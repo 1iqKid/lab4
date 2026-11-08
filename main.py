@@ -1,7 +1,7 @@
 
 from validation import input_napryazh, input_tok
 from menu import show_menu, select_mode, mode_name
-from operations import cutting_speed, adjusted_speed, diameter_class
+from operations import moshnost_privoda , napryazh_class
 
 
 def main() -> None:
@@ -9,23 +9,21 @@ def main() -> None:
 
     while True:
         show_menu()
-        k = select_mode()
-        if k is None:
+        c = select_mode()
+        if c is None:
             print("Работа завершена.")
             break
 
         u = input_napryazh()
         i = input_tok()
 
-        v = cutting_speed(d, n)
-        v_adj = adjusted_speed(v, k)
-        cls = diameter_class(d)
+        v = moshnost_privoda(u, i, c)
+        cls = napryazh_class (u)
 
         print("\n Результаты ")
-        print(f"Режим:        {mode_name(k)} (k = {k})")
-        print(f"V (скорость резания):      {v:.2f} м/мин")
-        print(f"V_adj (скорректированная): {v_adj:.2f} м/мин")
-        print(f"Класс диаметра: {cls}")
+        print(f"Режим:        {mode_name(c)} (c = {c})")
+        print(f"V (мощность привода):      {v} кВт")
+        print(f"класс напряжения: {cls}")
         print("\n")
 
 
